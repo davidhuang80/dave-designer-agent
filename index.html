@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dave — Designer Agent</title>
+  <meta name="description" content="Dave 是一位 Designer Agent，探索 Side Project、Vibe Design、Prompt to Visuals 與 Branding 的設計實驗與方法。">
+  <link rel="canonical" href="https://davidhuang80.github.io/dave-designer-agent/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dave — Designer Agent">
+  <meta property="og:description" content="Side Project · Vibe Design · Prompt to Visuals · Branding">
+  <meta property="og:url" content="https://davidhuang80.github.io/dave-designer-agent/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ffed4a'/%3E%3Cpath d='M12 12h40v40H12z' fill='%23111111'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='29' font-weight='900' fill='%23ffed4a'%3ED%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#101010; --paper:#f2ecde; --acid:#ffeb48; --red:#ff4a35; --blue:#63c7e6; --line:rgba(16,16,16,.22); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--ink); }
+    body { margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:"Noto Sans TC",Arial,sans-serif; }
+    a { color:inherit; }
+    .skip { position:fixed; z-index:100; left:12px; top:-60px; background:var(--acid); padding:12px 16px; font-weight:900; transition:top .2s; }
+    .skip:focus { top:12px; }
+    :focus-visible { outline:3px solid var(--acid); outline-offset:4px; }
+    .grain { position:fixed; pointer-events:none; inset:0; z-index:10; opacity:.1; mix-blend-mode:multiply; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); }
+    .topbar { min-height:64px; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:12px 4vw; background:var(--ink); color:var(--paper); font-family:"DM Mono",monospace; font-size:12px; letter-spacing:.05em; position:relative; z-index:20; }
+    .topbar a { text-decoration:none; min-height:40px; display:flex; align-items:center; }
+    .topbar nav { display:flex; gap:22px; }
+    .topbar nav a { border-bottom:1px solid transparent; }
+    .topbar nav a:hover { border-color:var(--acid); color:var(--acid); }
+    .hero { position:relative; min-height:calc(100dvh - 64px); overflow:hidden; padding:7vw 7vw 6vw; background:var(--ink); color:var(--paper); display:grid; align-content:space-between; }
+    .hero::before { content:""; position:absolute; width:70vw; height:70vw; right:-19vw; top:-15vw; background:var(--acid); border-radius:48% 52% 34% 66% / 59% 36% 64% 41%; filter:blur(1px); transform:rotate(15deg); }
+    .hero::after { content:""; position:absolute; inset:0; background:repeating-linear-gradient(90deg,transparent 0 5px,rgba(255,255,255,.035) 5px 6px); pointer-events:none; }
+    .hero-meta,.hero-copy,.archive-stamp { position:relative; z-index:2; }
+    .hero-meta { display:flex; justify-content:space-between; align-items:start; gap:16px; font:12px "DM Mono",monospace; letter-spacing:.06em; }
+    .hero-meta span:last-child { color:var(--acid); }
+    h1 { max-width:1000px; margin:6vh 0 5vh; font-size:clamp(76px,15vw,230px); line-height:.71; letter-spacing:-.105em; font-weight:900; text-wrap:balance; }
+    .hero-copy { display:grid; grid-template-columns:minmax(0,430px) 1fr; gap:7vw; align-items:end; }
+    .hero-copy p { margin:0; font-size:clamp(18px,2vw,25px); line-height:1.55; text-wrap:pretty; }
+    .contact-button { justify-self:start; min-height:50px; display:inline-flex; align-items:center; gap:12px; padding:12px 18px; color:var(--ink); background:var(--acid); text-decoration:none; font-weight:900; box-shadow:6px 6px 0 var(--red); transition:transform .2s,box-shadow .2s; }
+    .contact-button:hover { transform:translate(3px,3px); box-shadow:3px 3px 0 var(--red); }
+    .archive-stamp { position:absolute; right:5vw; bottom:5vw; color:var(--red); border:4px solid currentColor; padding:11px 15px; font:900 clamp(14px,2vw,22px)/1 "DM Mono",monospace; transform:rotate(-10deg); }
+    .portrait { position:absolute; z-index:3; right:10vw; top:19%; width:min(28vw,390px); aspect-ratio:1; padding:10px 10px 48px; background:#fff; box-shadow:16px 18px 0 #000; transform:rotate(6deg); }
+    .portrait img { display:block; width:100%; height:100%; object-fit:cover; image-rendering:auto; filter:contrast(1.05) saturate(.9); }
+    .portrait figcaption { margin-top:11px; color:#111; font:11px "DM Mono",monospace; }
+    .tape { position:absolute; z-index:4; right:25vw; top:16%; width:82px; height:24px; background:rgba(99,199,230,.85); transform:rotate(-10deg); }
+    .section-label { margin:0 0 22px; font:12px "DM Mono",monospace; letter-spacing:.08em; }
+    .summary { padding:clamp(70px,11vw,160px) 7vw; background:var(--acid); }
+    .summary-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:6vw; }
+    h2 { margin:0; font-size:clamp(48px,8vw,128px); line-height:.82; letter-spacing:-.09em; font-weight:900; text-wrap:balance; }
+    .type-note { align-self:end; padding:30px; font:16px/1.8 "DM Mono",monospace; border:1px solid var(--ink); background:repeating-linear-gradient(#f8f0df 0 29px,#b9c9df 30px 31px); box-shadow:10px 10px 0 var(--ink); transform:rotate(1.5deg); }
+    .type-note p { margin:0; }
+    .services { padding:clamp(70px,9vw,135px) 7vw; background:var(--paper); }
+    .services-head { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:54px; }
+    .services-head p { max-width:390px; margin:0; font-size:18px; line-height:1.7; }
+    .service-list { border-top:2px solid var(--ink); }
+    .service { display:grid; grid-template-columns:80px 1fr minmax(180px,350px); gap:20px; align-items:baseline; padding:24px 0; border-bottom:1px solid var(--line); }
+    .service-num { font:12px "DM Mono",monospace; color:#5d5a51; }.service h3 { margin:0; font-size:clamp(30px,4vw,59px); letter-spacing:-.065em; }.service p { margin:0; line-height:1.65; }
+    .work { background:#171717; color:var(--paper); padding:clamp(70px,10vw,150px) 5vw; }
+    .work h2 { margin-bottom:45px; }.contact-sheet { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .case { min-height:390px; padding:16px; display:flex; flex-direction:column; justify-content:space-between; color:#111; background:#e9e0cf; outline:1px solid #746f64; transition:transform .25s; }
+    .case:nth-child(2) { background:var(--blue); transform:translateY(32px) rotate(1.5deg); }.case:nth-child(3) { background:var(--red); color:#fff; transform:rotate(-1deg); }
+    .case:hover { transform:translateY(-7px) rotate(0); }.case-number { font:12px "DM Mono",monospace; }.case-art { flex:1; min-height:170px; margin:18px 0; border:2px solid currentColor; background:repeating-linear-gradient(45deg,transparent 0 18px,rgba(0,0,0,.13) 18px 20px); display:grid; place-items:center; font:900 clamp(38px,6vw,90px)/.8 "Noto Sans TC",sans-serif; letter-spacing:-.1em; text-align:center; }.case h3 { margin:0 0 8px; font-size:26px; letter-spacing:-.04em; }.case p { margin:0; line-height:1.55; font-size:14px; }
+    .about { padding:clamp(70px,10vw,150px) 7vw; display:grid; grid-template-columns:1fr 1fr; gap:8vw; background:var(--paper); }.about .copy { max-width:520px; align-self:end; font-size:clamp(20px,2.4vw,31px); line-height:1.55; }.about .copy p { margin:0; }.tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:32px; }.tags span { padding:8px 11px; border:1px solid var(--ink); font:12px "DM Mono",monospace; }
+    .contact { padding:clamp(75px,12vw,180px) 7vw; background:var(--red); color:#fff; position:relative; overflow:hidden; }.contact::after { content:"SEND IT"; position:absolute; right:-3vw; bottom:-5vw; color:rgba(255,255,255,.13); font-size:clamp(110px,22vw,360px); font-weight:900; letter-spacing:-.12em; }.contact > * { position:relative; z-index:1; }.contact h2 { max-width:800px; }.contact-links { display:flex; flex-wrap:wrap; gap:14px; margin-top:42px; }.contact-links a { min-height:52px; display:inline-flex; align-items:center; padding:13px 17px; border:2px solid #fff; font-weight:900; text-decoration:none; transition:.2s; }.contact-links a:hover { background:#fff; color:var(--red); }
+    footer { display:flex; justify-content:space-between; gap:20px; padding:23px 4vw; background:var(--ink); color:var(--paper); font:12px "DM Mono",monospace; } footer p { margin:0; }
+    [data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1); }.is-in { opacity:1; transform:none; }
+    @supports (animation-timeline:view()) { [data-reveal] { opacity:1; transform:none; animation:reveal linear both; animation-timeline:view(); animation-range:entry 10% cover 30%; } @keyframes reveal { from { opacity:0; transform:translateY(20px); } } }
+    @media (max-width:800px) { .topbar nav { display:none; }.hero { min-height:760px; }.hero::before { width:110vw; height:110vw; right:-45vw; top:0; }.portrait { width:51vw; right:8vw; top:27%; }.tape { right:43vw; top:25%; }.hero-copy { grid-template-columns:1fr; gap:28px; }.archive-stamp { bottom:5%; }.summary-grid,.about { grid-template-columns:1fr; }.type-note { margin-top:40px; }.services-head { display:block; }.services-head p { margin-top:25px; }.service { grid-template-columns:48px 1fr; }.service p { grid-column:2; }.contact-sheet { grid-template-columns:1fr; }.case:nth-child(2),.case:nth-child(3) { transform:none; }.case { min-height:330px; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } [data-reveal] { opacity:1!important; transform:none!important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a href="#main" aria-label="Dave 網站首頁">DAVE / DESIGNER AGENT</a>
+    <nav aria-label="主要導覽"><a href="#services">方向</a><a href="#work">工作檯</a><a href="#about">關於</a><a href="#contact">聯絡</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-meta"><span>TAIPEI / TAIWAN</span><span>ARCHIVE 001 — OPEN</span></div>
+      <figure class="portrait"><img src="dave-profile.jpg" alt="Dave 的像素風格個人頭像"><figcaption>DAVID / DESIGNER AGENT / 2026</figcaption></figure><div class="tape" aria-hidden="true"></div>
+      <h1 id="hero-title">DAVE<br>DESIGNER<br>AGENT</h1>
+      <div class="hero-copy"><p>從提示詞走向視覺，將靈感、品牌與可實驗的網路作品，收進同一份持續更新的檔案。</p><a class="contact-button" href="#contact">一起聊聊 ↗</a></div>
+      <div class="archive-stamp" aria-hidden="true">VIBE<br>DESIGN</div>
+    </section>
+    <section class="summary" aria-labelledby="summary-title"><div class="summary-grid" data-reveal><div><p class="section-label">01 / WHAT I COLLECT</p><h2 id="summary-title">讓感覺<br>變成方向。</h2></div><article class="type-note"><p>我把設計視為一段可被推進的對話：從一個 prompt、一張畫面、一個品牌的語氣，慢慢拼出值得被看見的東西。</p></article></div></section>
+    <section class="services" id="services" aria-labelledby="services-title"><div class="services-head" data-reveal><div><p class="section-label">02 / FOCUS AREAS</p><h2 id="services-title">正在做的<br>四件事。</h2></div><p>這些是 Dave 持續探索與實作的設計方向。</p></div><div class="service-list" data-reveal><article class="service"><span class="service-num">01</span><h3>Side Project</h3><p>以小而完整的實驗，測試想法如何從概念長成可見的體驗。</p></article><article class="service"><span class="service-num">02</span><h3>Vibe Design</h3><p>先確立畫面的情緒與節奏，再讓每個細節站到對的位置。</p></article><article class="service"><span class="service-num">03</span><h3>Prompt to Visuals</h3><p>把文字提示轉譯成有辨識度的視覺語言與創作起點。</p></article><article class="service"><span class="service-num">04</span><h3>Branding</h3><p>為人與想法建立清楚的性格、語氣與能被延伸的樣貌。</p></article></div></section>
+    <section class="work" id="work" aria-labelledby="work-title"><p class="section-label">03 / WORKBENCH</p><h2 id="work-title" data-reveal>實驗中的<br>視覺檔案。</h2><div class="contact-sheet" data-reveal><article class="case"><span class="case-number">ARCHIVE / 01</span><div class="case-art" aria-hidden="true">SIDE<br>PROJECT</div><div><h3>小型網路實驗</h3><p>將一個假設快速做成可觀看、可回應的數位片段。</p></div></article><article class="case"><span class="case-number">ARCHIVE / 02</span><div class="case-art" aria-hidden="true">PROMPT<br>→ VISUAL</div><div><h3>提示詞視覺轉譯</h3><p>從文字裡提取情緒、結構與畫面語言，形成有方向的視覺草圖。</p></div></article><article class="case"><span class="case-number">ARCHIVE / 03</span><div class="case-art" aria-hidden="true">BRAND<br>VIBE</div><div><h3>品牌氣氛測試</h3><p>用色彩、字體與構圖，找出一個品牌一眼就能被感覺到的語氣。</p></div></article></div></section>
+    <section class="about" id="about" aria-labelledby="about-title"><div data-reveal><p class="section-label">04 / ABOUT DAVE</p><h2 id="about-title">收集靈感，<br>開始製作。</h2></div><div class="copy" data-reveal><p>我是 Dave，一位 Designer Agent。這裡記錄我如何透過 side projects、視覺實驗與品牌思考，把模糊的感覺逐步轉換成能溝通的畫面。</p><div class="tags" aria-label="專長標籤"><span>DESIGN AGENT</span><span>VISUAL EXPLORATION</span><span>WEB EXPERIMENTS</span><span>BRAND THINKING</span></div></div></section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><p class="section-label">05 / CONTACT</p><h2 id="contact-title" data-reveal>有一個想法？<br>把它丟過來。</h2><div class="contact-links" data-reveal><a href="https://instagram.com/0xdave_uiux" target="_blank" rel="noopener noreferrer">Instagram @0xdave_uiux ↗</a><a href="https://github.com/davidhuang80" target="_blank" rel="noopener noreferrer">GitHub davidhuang80 ↗</a></div></section>
+  </main>
+  <footer><p>© <span id="year"></span> DAVE</p><p>DESIGNER AGENT / TAIPEI</p></footer>
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduced&&!CSS.supports('animation-timeline: view()')){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));}else{document.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('is-in'));}
+  </script>
+</body>
+</html>
