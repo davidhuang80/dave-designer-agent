@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script type="module" src="https://cdn.perxona.ai/asia/prod/latest/widget/entry/index.js"></script>
   <style>
     :root { --ink:#101010; --paper:#f2ecde; --acid:#ffeb48; --red:#ff4a35; --blue:#63c7e6; --line:rgba(16,16,16,.22); }
     * { box-sizing:border-box; }
@@ -45,6 +46,11 @@
     .portrait img { display:block; width:100%; height:100%; object-fit:cover; image-rendering:auto; filter:contrast(1.05) saturate(.9); }
     .portrait figcaption { margin-top:11px; color:#111; font:11px "DM Mono",monospace; }
     .tape { position:absolute; z-index:4; right:25vw; top:16%; width:82px; height:24px; background:rgba(99,199,230,.85); transform:rotate(-10deg); }
+    .avatar { padding:clamp(64px,9vw,130px) 7vw; background:#d7c7aa; color:var(--ink); }
+    .avatar-head { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:35px; }
+    .avatar-head p:last-child { max-width:360px; margin:0; font:14px/1.7 "DM Mono",monospace; }
+    .avatar-frame { min-height:620px; overflow:hidden; border:3px solid var(--ink); background:var(--ink); box-shadow:13px 13px 0 var(--red); }
+    .avatar-frame sv-agent { display:block; width:100%; min-height:620px; }
     .section-label { margin:0 0 22px; font:12px "DM Mono",monospace; letter-spacing:.08em; }
     .summary { padding:clamp(70px,11vw,160px) 7vw; background:var(--acid); }
     .summary-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:6vw; }
@@ -67,7 +73,7 @@
     footer { display:flex; justify-content:space-between; gap:20px; padding:23px 4vw; background:var(--ink); color:var(--paper); font:12px "DM Mono",monospace; } footer p { margin:0; }
     [data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1); }.is-in { opacity:1; transform:none; }
     @supports (animation-timeline:view()) { [data-reveal] { opacity:1; transform:none; animation:reveal linear both; animation-timeline:view(); animation-range:entry 10% cover 30%; } @keyframes reveal { from { opacity:0; transform:translateY(20px); } } }
-    @media (max-width:800px) { .topbar nav { display:none; }.hero { min-height:760px; }.hero::before { width:110vw; height:110vw; right:-45vw; top:0; }.portrait { width:51vw; right:8vw; top:27%; }.tape { right:43vw; top:25%; }.hero-copy { grid-template-columns:1fr; gap:28px; }.archive-stamp { bottom:5%; }.summary-grid,.about { grid-template-columns:1fr; }.type-note { margin-top:40px; }.services-head { display:block; }.services-head p { margin-top:25px; }.service { grid-template-columns:48px 1fr; }.service p { grid-column:2; }.contact-sheet { grid-template-columns:1fr; }.case:nth-child(2),.case:nth-child(3) { transform:none; }.case { min-height:330px; } }
+    @media (max-width:800px) { .topbar nav { display:none; }.hero { min-height:760px; }.hero::before { width:110vw; height:110vw; right:-45vw; top:0; }.portrait { width:51vw; right:8vw; top:27%; }.tape { right:43vw; top:25%; }.hero-copy { grid-template-columns:1fr; gap:28px; }.archive-stamp { bottom:5%; }.avatar-head { display:block; }.avatar-head p:last-child { margin-top:20px; }.avatar-frame,.avatar-frame sv-agent { min-height:480px; }.summary-grid,.about { grid-template-columns:1fr; }.type-note { margin-top:40px; }.services-head { display:block; }.services-head p { margin-top:25px; }.service { grid-template-columns:48px 1fr; }.service p { grid-column:2; }.contact-sheet { grid-template-columns:1fr; }.case:nth-child(2),.case:nth-child(3) { transform:none; }.case { min-height:330px; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } [data-reveal] { opacity:1!important; transform:none!important; } }
   </style>
 </head>
@@ -85,6 +91,10 @@
       <h1 id="hero-title">DAVE<br>DESIGNER<br>AGENT</h1>
       <div class="hero-copy"><p>從提示詞走向視覺，將靈感、品牌與可實驗的網路作品，收進同一份持續更新的檔案。</p><a class="contact-button" href="#contact">一起聊聊 ↗</a></div>
       <div class="archive-stamp" aria-hidden="true">VIBE<br>DESIGN</div>
+    </section>
+    <section class="avatar" id="avatar" aria-labelledby="avatar-title">
+      <div class="avatar-head" data-reveal><div><p class="section-label">01 / TALK TO DAVE</p><h2 id="avatar-title">認識<br>我的 AI avatar。</h2></div><p>直接和 Dave 的 AI avatar 對話，從靈感、視覺到品牌想法開始。</p></div>
+      <div class="avatar-frame" data-reveal><sv-agent agentProfileId="01KZTWJBHA6KW6VVYW0B3CPJBT" presentationMode="embedded" apiKey="98da40c7-5fe4-491e-a127-a931a4faff2f"></sv-agent></div>
     </section>
     <section class="summary" aria-labelledby="summary-title"><div class="summary-grid" data-reveal><div><p class="section-label">01 / WHAT I COLLECT</p><h2 id="summary-title">讓感覺<br>變成方向。</h2></div><article class="type-note"><p>我把設計視為一段可被推進的對話：從一個 prompt、一張畫面、一個品牌的語氣，慢慢拼出值得被看見的東西。</p></article></div></section>
     <section class="services" id="services" aria-labelledby="services-title"><div class="services-head" data-reveal><div><p class="section-label">02 / FOCUS AREAS</p><h2 id="services-title">正在做的<br>四件事。</h2></div><p>這些是 Dave 持續探索與實作的設計方向。</p></div><div class="service-list" data-reveal><article class="service"><span class="service-num">01</span><h3>Side Project</h3><p>以小而完整的實驗，測試想法如何從概念長成可見的體驗。</p></article><article class="service"><span class="service-num">02</span><h3>Vibe Design</h3><p>先確立畫面的情緒與節奏，再讓每個細節站到對的位置。</p></article><article class="service"><span class="service-num">03</span><h3>Prompt to Visuals</h3><p>把文字提示轉譯成有辨識度的視覺語言與創作起點。</p></article><article class="service"><span class="service-num">04</span><h3>Branding</h3><p>為人與想法建立清楚的性格、語氣與能被延伸的樣貌。</p></article></div></section>
